@@ -1,32 +1,56 @@
 package ru.britishdesign.rm.server.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import ru.britishdesign.rm.server.entity.Remind;
+import ru.britishdesign.rm.server.entity.School;
+import ru.britishdesign.rm.server.service.DataService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
+import java.util.List;
 
 @RestController
-@RequestMapping("/reminder")
 public class ReminderController {
 
-    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    private DataService service;
+
+    @Autowired
+    public void setDataService(DataService service){
+        this.service = service;
+    }
+
+    @RequestMapping(value = "/reminders", method = RequestMethod.GET)
     @ResponseBody
-    public Remind getReminder(){
-        return createMockRemind();
+    public List<Remind> getAllReminders(){
+        return service.getAll();
 
     }
 
-    private Remind createMockRemind() {
-        Remind remind = new Remind();
-        remind.setId(1);
-        remind.setRemindDate(new Date());
-        remind.setTitle("My first reminde");
+    @RequestMapping(value = "/reminders/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public Remind getReminder(@PathVariable("id") long remindID){
+        return service.getByID(remindID);
 
-        return remind;
     }
 
-}
+    @RequestMapping(value = "/reminders", method = RequestMethod.POST)
+    @ResponseBody
+    public Remind saveReminder(@RequestBody Remind remind){
+        return service.save(remind);
+
+    }
+
+    @RequestMapping(value = "/reminders/del/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public void delete(@PathVariable long id){
+        service.remove(id);
+
+    }
+
+    @RequestMapping(value = "/schools", method = RequestMethod.GET)
+    @ResponseBody
+    public List<School> getAllSchool(){
+        return service.getAllSchool();
+
+    }
+ }

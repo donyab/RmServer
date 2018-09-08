@@ -22,6 +22,9 @@ public class Remind {
     @Temporal(TemporalType.TIMESTAMP)
     private Date remindDate;
 
+    @Column(name = "remind_detail", nullable = false, length = 200)
+    private String remindDetail;
+
     public Remind() {
     }
 
@@ -47,5 +50,13 @@ public class Remind {
 
     public void setRemindDate(Date remindDate) {
         this.remindDate = remindDate;
+    }
+
+    public String getRemindDetail() {
+        return remindDetail;
+    }
+
+    public void setRemindDetail(String remindDetail) {
+        this.remindDetail = remindDetail;
     }
 }

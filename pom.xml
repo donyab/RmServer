@@ -18,6 +18,8 @@
         <hibernate-core.version>5.3.5.Final</hibernate-core.version>
         <jaxb-api.version>2.3.0</jaxb-api.version>
         <jackson-databind.version>2.9.6</jackson-databind.version>
+        <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
+        <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
     </properties>
 
     <packaging>war</packaging>
@@ -47,6 +49,18 @@
             <groupId>javax.xml.bind</groupId>
             <artifactId>jaxb-api</artifactId>
             <version>${jaxb-api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <version>${maven-site-plugin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-project-info-reports-plugin</artifactId>
+            <version>${maven-project-info-reports-plugin.version}</version>
         </dependency>
 
         <!--JSON Converter-->
