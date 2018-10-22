@@ -18,12 +18,19 @@ public class Remind {
     @Column(name = "title", nullable = false, length = 50)
     private String title;
 
-    @Column(name = "remind_date", nullable = false)
+    @Column(name = "start_event", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    private Date remindDate;
+    private Date startEvent;
+
+    @Column(name = "end_event", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endEvent;
 
     @Column(name = "remind_detail", nullable = false, length = 200)
     private String remindDetail;
+
+    @Column(name = "color", nullable = false, length = 6)
+    private String color;
 
     public Remind() {
     }
@@ -44,12 +51,20 @@ public class Remind {
         this.title = title;
     }
 
-    public Date getRemindDate() {
-        return remindDate;
+    public Date getStartEvent() {
+        return startEvent;
     }
 
-    public void setRemindDate(Date remindDate) {
-        this.remindDate = remindDate;
+    public void setStartEvent(Date startEvent) {
+        this.startEvent = startEvent;
+    }
+
+    public Date getEndEvent() {
+        return endEvent;
+    }
+
+    public void setEndEvent(Date endEvent) {
+        this.endEvent = endEvent;
     }
 
     public String getRemindDetail() {
@@ -58,5 +73,13 @@ public class Remind {
 
     public void setRemindDetail(String remindDetail) {
         this.remindDetail = remindDetail;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }
